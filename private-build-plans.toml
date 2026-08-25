@@ -3,6 +3,7 @@
 [collectPlans.Josefka]
 from = [
   "JosefkaMono",
+  "JosefkaFixed"
 ]
 
 [buildPlans.JosefkaMono]
@@ -12,6 +13,18 @@ serifs = "sans"
 noCvSs = true
 noLigation = true
 exportGlyphNames = false
+
+[buildPlans.JosefkaFixed]
+family = "Josefka Fixed"
+spacing = "fixed"
+serifs = "sans"
+noCvSs = true
+noLigation = true
+exportGlyphNames = false
+variants.inherits = "buildPlans.JosefkaMono"
+weights.inherits = "buildPlans.JosefkaMono"
+widths.inherits = "buildPlans.JosefkaMono"
+slopes.inherits = "buildPlans.JosefkaMono"
 
 [buildPlans.JosefkaMono.variants.design]
 digit-form = 'lining'
