@@ -45,8 +45,25 @@
 
           installPhase = ''
             runHook preInstall
-            mkdir -p $out
-            cp -a dist/. $out/
+
+            mkdir -p "$out"
+            mv dist/.super-ttc/Josefka.ttc "$out/Josefka.ttc"
+
+            for sgr in dist/.super-ttc/SGr-*.ttc; do
+              fam=$(basename "$sgr" .ttc | cut -d- -f2-)
+
+              mkdir -p "$out/$fam/TTC"
+              mv "$sgr" "$out/$fam/TTC/$fam.ttc"
+              for w in dist/.ttc/SGr-$fam/*.ttc; do
+                [ -e "$w" ] || continue
+                mv "$w" "$out/$fam/TTC/$(basename "$w" | cut -d- -f2-)"
+              done
+
+              mkdir -p "$out/$fam/TTF/Hinted" "$out/$fam/TTF/Unhinted"
+              mv dist/$fam/TTF/* "$out/$fam/TTF/Hinted/"
+              mv dist/$fam/TTF-Unhinted/* "$out/$fam/TTF/Unhinted/"
+            done
+
             runHook postInstall
           '';
         };
