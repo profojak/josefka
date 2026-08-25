@@ -3,7 +3,8 @@
 [collectPlans.Josefka]
 from = [
   "JosefkaMono",
-  "JosefkaFixed"
+  "JosefkaFixed",
+  "JosefkaText"
 ]
 
 [buildPlans.JosefkaMono]
@@ -17,6 +18,18 @@ exportGlyphNames = false
 [buildPlans.JosefkaFixed]
 family = "Josefka Fixed"
 spacing = "fixed"
+serifs = "sans"
+noCvSs = true
+noLigation = true
+exportGlyphNames = false
+variants.inherits = "buildPlans.JosefkaMono"
+weights.inherits = "buildPlans.JosefkaMono"
+widths.inherits = "buildPlans.JosefkaMono"
+slopes.inherits = "buildPlans.JosefkaMono"
+
+[buildPlans.JosefkaText]
+family = "Josefka Text"
+spacing = "quasi-proportional"
 serifs = "sans"
 noCvSs = true
 noLigation = true
@@ -115,6 +128,7 @@ pilcrow = 'high'
 
 [buildPlans.JosefkaMono.variants.italic]
 six = 'open-contour'
+seven = 'bend-serifless'
 eight = 'crossing-asymmetric'
 nine = 'open-contour'
 capital-a = 'curly-serifless'
