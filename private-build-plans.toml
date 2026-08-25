@@ -3,8 +3,11 @@
 [collectPlans.Josefka]
 from = [
   "JosefkaMono",
+  "JosefkaMonoSlab",
   "JosefkaFixed",
-  "JosefkaText"
+  "JosefkaFixedSlab",
+  "JosefkaText",
+  "JosefkaTextSlab"
 ]
 
 [buildPlans.JosefkaMono]
@@ -14,6 +17,18 @@ serifs = "sans"
 noCvSs = true
 noLigation = true
 exportGlyphNames = false
+
+[buildPlans.JosefkaMonoSlab]
+family = "Josefka Mono Slab"
+spacing = "normal"
+serifs = "slab"
+noCvSs = true
+noLigation = true
+exportGlyphNames = false
+variants.inherits = "buildPlans.JosefkaMono"
+weights.inherits = "buildPlans.JosefkaMono"
+widths.inherits = "buildPlans.JosefkaMono"
+slopes.inherits = "buildPlans.JosefkaMono"
 
 [buildPlans.JosefkaFixed]
 family = "Josefka Fixed"
@@ -27,6 +42,18 @@ weights.inherits = "buildPlans.JosefkaMono"
 widths.inherits = "buildPlans.JosefkaMono"
 slopes.inherits = "buildPlans.JosefkaMono"
 
+[buildPlans.JosefkaFixedSlab]
+family = "Josefka Fixed Slab"
+spacing = "fixed"
+serifs = "slab"
+noCvSs = true
+noLigation = true
+exportGlyphNames = false
+variants.inherits = "buildPlans.JosefkaMonoSlab"
+weights.inherits = "buildPlans.JosefkaMonoSlab"
+widths.inherits = "buildPlans.JosefkaMonoSlab"
+slopes.inherits = "buildPlans.JosefkaMonoSlab"
+
 [buildPlans.JosefkaText]
 family = "Josefka Text"
 spacing = "quasi-proportional"
@@ -38,6 +65,18 @@ variants.inherits = "buildPlans.JosefkaMono"
 weights.inherits = "buildPlans.JosefkaMono"
 widths.inherits = "buildPlans.JosefkaMono"
 slopes.inherits = "buildPlans.JosefkaMono"
+
+[buildPlans.JosefkaTextSlab]
+family = "Josefka Text Slab"
+spacing = "quasi-proportional"
+serifs = "slab"
+noCvSs = true
+noLigation = true
+exportGlyphNames = false
+variants.inherits = "buildPlans.JosefkaMonoSlab"
+weights.inherits = "buildPlans.JosefkaMonoSlab"
+widths.inherits = "buildPlans.JosefkaMonoSlab"
+slopes.inherits = "buildPlans.JosefkaMonoSlab"
 
 [buildPlans.JosefkaMono.variants.design]
 digit-form = 'lining'
@@ -145,6 +184,82 @@ i = 'tailed-serifed'
 k = 'cursive-serifless'
 l = 'tailed-serifed'
 y = 'cursive-serifless'
+z = 'cursive'
+brace = 'curly-flat-boundary'
+ampersand = 'upper-open'
+percent = 'rings-continuous-slash-also-connected'
+pilcrow = 'curved'
+
+[buildPlans.JosefkaMonoSlab.variants.design]
+two = 'curly-neck-serifed'
+three = 'flat-top-serifed'
+four = 'semi-open-serifed'
+five = 'upright-arched-serifed'
+seven = 'straight-serifed'
+capital-a = 'straight-tri-serifed'
+capital-b = 'standard-bilateral-serifed'
+capital-c = 'unilateral-serifed'
+capital-d = 'more-rounded-bilateral-serifed'
+capital-e = 'serifed'
+capital-f = 'serifed'
+capital-g = 'toothed-serifed-hooked'
+capital-h = 'serifed'
+capital-i = 'serifed'
+capital-j = 'serifed'
+capital-k = 'curly-serifed'
+capital-l = 'serifed'
+capital-m = 'hanging-serifed'
+capital-n = 'standard-serifed'
+capital-p = 'closed-serifed'
+capital-q = 'detached-bend-tailed'
+capital-r = 'curly-serifed'
+capital-s = 'bilateral-serifed'
+capital-t = 'serifed'
+capital-u = 'toothless-rounded-serifed'
+capital-v = 'straight-serifed'
+capital-w = 'straight-serifed'
+capital-x = 'straight-serifed'
+capital-y = 'straight-serifed'
+capital-z = 'straight-serifed'
+a = 'double-storey-serifed'
+b = 'toothed-serifed'
+c = 'unilateral-serifed'
+d = 'toothed-serifed'
+f = 'serifed'
+h = 'straight-serifed'
+k = 'curly-serifed'
+m = 'serifed'
+n = 'straight-serifed'
+p = 'eared-serifed'
+q = 'straight-serifed'
+r = 'serifed'
+s = 'bilateral-serifed'
+u = 'toothed-serifed'
+v = 'straight-serifed'
+w = 'straight-serifed'
+x = 'straight-serifed'
+y = 'straight-turn-serifed'
+z = 'straight-serifed'
+
+[buildPlans.JosefkaMonoSlab.variants.italic]
+six = 'open-contour'
+seven = 'bend-serifed'
+eight = 'crossing-asymmetric'
+nine = 'open-contour'
+capital-a = 'curly-tri-serifed'
+capital-g = 'toothless-rounded-serifed-hooked'
+capital-q = 'closed-swash'
+capital-r = 'standing-serifed'
+capital-x = 'curly-serifed'
+capital-z = 'cursive'
+a = 'single-storey-double-serifed'
+e = 'flat-crossbar'
+f = 'tailed'
+g = 'single-storey-serifed'
+i = 'tailed-serifed'
+k = 'diagonal-tailed-cursive-top-left-serifed'
+l = 'tailed-serifed'
+y = 'cursive-serifed'
 z = 'cursive'
 brace = 'curly-flat-boundary'
 ampersand = 'upper-open'
