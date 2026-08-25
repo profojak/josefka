@@ -38,6 +38,7 @@
 
             export HOME="$PWD"
             npm ci --offline --cache "$npmDeps"
+            patchShebangs node_modules
             npm run build -- all-super-ttc::Josefka
 
             runHook postBuild
