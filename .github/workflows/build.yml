@@ -17,6 +17,9 @@ jobs:
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22
+        with:
+          determinate: false
+          diagnostic-endpoint: ""
 
       - name: Setup Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v14
@@ -35,12 +38,11 @@ jobs:
 
       - name: Prepare distributables
         run: |
-          cp -r --no-preserve=mode result Josefka
-          chmod -R u+w Josefka
+          cp -r --no-preserve=mode,ownership result Josefka
           zip -r -9 Josefka.zip Josefka
 
           mkdir -p dist
-          mv Josefka.zip Josefka.tar.gz dist/
+          mv Josefka.zip dist/
           for fam in Josefka/*/; do
             fam=$(basename "$fam")
             echo "Packing $fam"
@@ -81,7 +83,6 @@ jobs:
           body: |
             Rolling release built from `${{ github.sha }}` on `${{ github.ref_name }}`.
           files: |
-            dist/Josefka.zip
             dist/Josefka.ttc
             dist/Josefka*.zip
           fail_on_unmatched_files: false
