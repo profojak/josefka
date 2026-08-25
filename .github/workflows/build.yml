@@ -1,0 +1,84 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v13
+
+      - name: Setup Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v8
+
+      - name: Build with Nix
+        run: nix build --print-build-logs --out-link result
+
+      - name: Show result
+        run: |
+          ls -lh result/
+          du -sh result
+          ls -R result | head -n 100
+
+      - name: Prepare distributables
+        run: |
+          cp -r --no-preserve=mode result Josefka
+          chmod -R u+w Josefka
+          zip -r -9 Josefka.zip Josefka
+
+          mkdir -p dist
+          mv Josefka.zip Josefka.tar.gz dist/
+          for fam in Josefka/*/; do
+            fam=$(basename "$fam")
+            echo "Packing $fam"
+            zip -r -9 "dist/${fam}.zip" "Josefka/${fam}"
+          done
+          cp Josefka/Josefka.ttc dist/ || true
+
+          ls -lh dist/
+          du -sh dist/*
+
+      - name: Upload font artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Josefka
+          path: |
+            dist/Josefka.zip
+            dist/Josefka.ttc
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload per-family font artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Josefka per-family
+          path: |
+            dist/Josefka*.zip
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Release
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest
+          body: |
+            Rolling release built from `${{ github.sha }}` on `${{ github.ref_name }}`.
+          files: |
+            dist/Josefka.zip
+            dist/Josefka.ttc
+            dist/Josefka*.zip
+          fail_on_unmatched_files: false
+          make_latest: true
